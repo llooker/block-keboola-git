@@ -1,0 +1,35 @@
+{
+  "label": "DevOps Essentials",
+  "category_label": "Models",
+  "branding": {
+    "image_uri": "https://marketplace-api.looker.com/block-icons/KeboolaBrand.png",
+    "tagline": "Analyze your Git repositories activity and team members’ activity."
+  },
+
+  "constants": {
+    "CONNECTION": {
+      "label": "Connection Name",
+      "value_constraint": "connection"
+    },
+    "SCHEMA_NAME": {
+      "label": "Schema Name"
+    },
+    "CONFIG_PROJECT_NAME": {
+      "label": "Config Project Name"
+    }
+  },
+  "models": [
+    {
+      "name": "block_keboola_git",
+      "connection_constant": "CONNECTION"
+    }
+  ],
+  "auxiliary_projects": [
+    {
+      "git_uri": "git://github.com/llooker/block-keboola-git-config.git",
+      "git_ref": "d512394fd43dde81eda17e5e529e23557a347edd",
+      "label": "DevOps Essentials by Keboola Config",
+      "constant_name": "CONFIG_PROJECT_NAME"
+    }
+  ]
+}
