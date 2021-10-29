@@ -1,6 +1,7 @@
-explore: repository_commit_core {
-  hidden: yes
-  extension: required
+include: "/views/*.view.lkml"
+
+explore: repository_commit {
+
 
   join: user {
     type: left_outer

@@ -1,6 +1,7 @@
-explore: pull_request_core {
-  hidden: yes
-  extension: required
+include: "/views/*.view.lkml"
+
+explore: pull_request {
+
 
   join: user {
     type: left_outer

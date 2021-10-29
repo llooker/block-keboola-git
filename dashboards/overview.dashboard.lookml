@@ -29,7 +29,7 @@
     height: 2
   - title: Overall Activity
     name: Overall Activity
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: event
     type: looker_area
     fields: [event.date_week, event.events, event.event]
@@ -94,7 +94,7 @@
     height: 7
   - title: Commits
     name: Commits KPI
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: repository_commit
     type: single_value
     fields: [repository_commit.commits]
@@ -109,7 +109,7 @@
     height: 2
   - title: Pull Requests
     name: Pull Requests KPI
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: pull_request
     type: single_value
     fields: [pull_request.pull_requests]
@@ -124,7 +124,7 @@
     height: 2
   - title: Issues
     name: Issues KPI
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: issue
     type: single_value
     fields: [issue.issues]
@@ -139,7 +139,7 @@
     height: 2
   - title: New Repositories
     name: New Repositories
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: repository
     type: single_value
     fields: [repository.repositories]
@@ -159,7 +159,7 @@
     height: 2
   - title: Pull Requests Trend
     name: Pull Requests Trend
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: pull_request
     type: looker_column
     fields: [pull_request.pull_requests, pull_request.state, pull_request.created_week]
@@ -220,7 +220,7 @@
     height: 7
   - title: Pull Requests by Repository (TOP 10)
     name: Pull Requests by Repository (TOP 10)
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: pull_request
     type: looker_bar
     fields: [pull_request.pull_requests, pull_request.state, repository.repository]
@@ -288,7 +288,7 @@
     height: 2
   - title: Issues Trend
     name: Issues Trend
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: issue
     type: looker_column
     fields: [issue.issues, issue.created_week, issue.kind]
@@ -358,7 +358,7 @@
     height: 2
   - title: Issues by Repository (TOP 10)
     name: Issues by Repository (TOP 10)
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: issue
     type: looker_bar
     fields: [issue.issues, issue.kind, repository.repository]
@@ -421,7 +421,7 @@
     height: 7
   - title: Issues Open For More Than 30 Days
     name: Issues Open For More Than 30 Days
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: issue
     type: table
     fields: [repository.repository, issue.title, issue.kind, issue.days_since_created,
@@ -454,7 +454,7 @@
     height: 5
   - title: Commits by Repository (TOP 10)
     name: Commits by Repository (TOP 10)
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: repository_commit
     type: looker_bar
     fields: [repository.repository, repository.language, repository_commit.commits]
@@ -512,7 +512,7 @@
     height: 7
   - title: Commits Trend
     name: Commits Trend
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: repository_commit
     type: looker_column
     fields: [repository.language, repository_commit.date_week, repository_commit.commits]
@@ -571,7 +571,7 @@
     height: 7
   - title: Pull Requests Stalled For More Than 2 Days
     name: Pull Requests Stalled For More Than 2 Days
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: pull_request
     type: table
     fields: [repository.repository, pull_request.title, pull_request.days_since_updated]
@@ -615,7 +615,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: organization
     listens_to_filters: []
     field: organization.organization
@@ -625,7 +625,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: user
     listens_to_filters: [Organization]
     field: user.user
