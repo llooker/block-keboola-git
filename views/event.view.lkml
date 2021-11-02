@@ -1,16 +1,16 @@
-view: issue {
-  sql_table_name: @{SCHEMA_NAME}.ISSUE ;;
-  drill_fields: [issue_id, title]
+view: event {
+  sql_table_name: @{SCHEMA_NAME}.EVENT ;;
+  drill_fields: [event_id]
 
-  dimension: issue_id {
-    label: "Issue ID"
+  dimension: event_id {
+    label: "Event ID"
     primary_key: yes
     type: string
-    sql: ${TABLE}."ISSUE_ID" ;;
+    sql: ${TABLE}."EVENT_ID" ;;
     html: <a href={{url}} target="_blank"><font color="blue">{{ value }}</font></a> ;;
   }
 
-  dimension_group: created {
+  dimension_group: date {
     type: time
     timeframes: [
       raw,
@@ -21,63 +21,18 @@ view: issue {
       quarter,
       year
     ]
-    sql: ${TABLE}."CREATED_ON" ;;
+    sql: ${TABLE}."DATE" ;;
   }
 
-  dimension: description {
+  dimension: event {
     type: string
-    sql: ${TABLE}."DESCRIPTION" ;;
-  }
-
-  dimension: kind {
-    type: string
-    sql: ${TABLE}."KIND" ;;
-  }
-
-  dimension: number {
-    type: number
-    sql: ${TABLE}."NUMBER" ;;
-  }
-
-  dimension: priority {
-    type: string
-    sql: ${TABLE}."PRIORITY" ;;
-  }
-
-  dimension: reporter {
-    type: string
-    sql: ${TABLE}."REPORTER" ;;
+    sql: ${TABLE}."EVENT" ;;
   }
 
   dimension: repository_id {
     type: string
     hidden: yes
     sql: ${TABLE}."REPOSITORY_ID" ;;
-  }
-
-  dimension: state {
-    type: string
-    sql: ${TABLE}."STATE" ;;
-  }
-
-  dimension: title {
-    type: string
-    sql: ${TABLE}."TITLE" ;;
-    html: <a href={{url}} target="_blank"><font color="blue">{{ value }}</font></a> ;;
-  }
-
-  dimension_group: updated {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}."UPDATED_ON" ;;
   }
 
   dimension: url {
@@ -87,27 +42,10 @@ view: issue {
 
   dimension: user_id {
     type: string
-    hidden: yes
     sql: ${TABLE}."USER_ID" ;;
   }
 
-  dimension_group: since_created {
-    type: duration
-    intervals: [day]
-    sql_start: ${TABLE}."CREATED_ON" ;;
-    sql_end: current_date ;;
-    drill_fields: [detail*]
-  }
-
-  dimension_group: since_updated {
-    type: duration
-    intervals: [day]
-    sql_start: ${TABLE}."UPDATED_ON" ;;
-    sql_end: current_date ;;
-    drill_fields: [detail*]
-  }
-
-  measure: issues {
+  measure: events {
     type: count
     drill_fields: [detail*]
   }
@@ -118,10 +56,9 @@ view: issue {
       organization.organization,
       user.user,
       repository.repository,
-      issue_id,
-      created_date,
-      updated_date,
-      issue_comment.issue_comments
+      date_date,
+      event,
+      event_id
     ]
   }
 }

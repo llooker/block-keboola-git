@@ -43,6 +43,5 @@ connection: "@{CONNECTION}"
 
 label: "Block Keboola Git Essentials"
 
-include: "/views/*.view"
 include: "/explores/*.explore.lkml"
 include: "/dashboards/*.dashboard.lookml"

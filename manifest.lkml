@@ -4,10 +4,10 @@ project_name: "block-keboola-git"
 
 constant: CONNECTION {
   value: "keboola_block_git"
-  export: override_required
+  export: override_optional
 }
 
 constant: SCHEMA_NAME {
   value: "WORKSPACE_546683285"
-  export: override_required
+  export: override_optional
 }

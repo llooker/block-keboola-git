@@ -1,10 +1,4 @@
-include: "//@{CONFIG_PROJECT_NAME}/issue.view"
-
 view: issue {
-  extends: [issue_config]
-}
-
-view: issue_core {
   sql_table_name: @{SCHEMA_NAME}.ISSUE ;;
   drill_fields: [issue_id, title]
 
