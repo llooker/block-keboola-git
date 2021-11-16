@@ -1,10 +1,17 @@
-explore: event_core {
-  hidden: yes
-  extension: required
+include: "/views/*.view.lkml"
+
+explore: issue {
+
+
+  join: repository {
+    type: left_outer
+    sql_on: ${issue.repository_id} = ${repository.repository_id} ;;
+    relationship: many_to_one
+  }
 
   join: user {
     type: left_outer
-    sql_on: ${event.user_id} = ${user.user_id} ;;
+    sql_on: ${issue.user_id} = ${user.user_id} ;;
     relationship: many_to_one
   }
 
@@ -20,9 +27,9 @@ explore: event_core {
     relationship: many_to_one
   }
 
-  join: repository {
+  join: issue_comment {
     type: left_outer
-    sql_on: ${event.repository_id} = ${repository.repository_id} ;;
-    relationship: many_to_one
+    sql_on: ${issue.issue_id} = ${issue_comment.issue_id} ;;
+    relationship: one_to_many
   }
 }

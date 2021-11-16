@@ -12,7 +12,6 @@ The Block contains two LookML dashboards:
 *  Overview for checking recent commit/pull/issues activity and identifying unresolved issues.
 *  User Activity for tracking activity of your team members.
 
-
 The underlying model contains four main explores:
 
 *  Repository Commit - contains commits and info about repositories.
@@ -25,3 +24,7 @@ As a standard, the data gets provided as a connection to Keboola-provided Snowfl
 The **Keboola Scaffold** will set up everything for you - from the data extraction to data transformation, to setting up the Snowflake database with necessary tables for the LookML. All you need to do is set up the connection to the database in Looker and add it to the Looker model.
 
 In case you want to enrich your Looker model and dashboards with other fields or objects, including the addition of more data sources, you can modify and extend the whole data extraction and processing directly in Keboola Connection.
+
+## Customization
+The LookML contents of this block can also be modified/extended to best fit all use cases.
+This block utilizes Refinement files for customization. For more information on using refinements to customize marketplace blocks, please see [this documentation](https://docs.looker.com/data-modeling/marketplace/customize-blocks).

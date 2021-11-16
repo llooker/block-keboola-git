@@ -1,10 +1,4 @@
-include: "//@{CONFIG_PROJECT_NAME}/organization_user.view"
-
-view: organization_user {
-  extends: [organization_user_config]
-}
-
-view: organization_user_core {
+view: organization_user{
   sql_table_name: @{SCHEMA_NAME}."ORGANIZATION_USER" ;;
 
   dimension: organization_id {

@@ -1,18 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/issue.view"
+view: pull_request {
+  sql_table_name: @{SCHEMA_NAME}.PULL_REQUEST ;;
+  drill_fields: [pull_request_id, title]
 
-view: issue {
-  extends: [issue_config]
-}
-
-view: issue_core {
-  sql_table_name: @{SCHEMA_NAME}.ISSUE ;;
-  drill_fields: [issue_id, title]
-
-  dimension: issue_id {
-    label: "Issue ID"
+  dimension: pull_request_id {
+  label: "Pull Request ID"
     primary_key: yes
     type: string
-    sql: ${TABLE}."ISSUE_ID" ;;
+    sql: ${TABLE}."PULL_REQUEST_ID" ;;
     html: <a href={{url}} target="_blank"><font color="blue">{{ value }}</font></a> ;;
   }
 
@@ -33,26 +27,6 @@ view: issue_core {
   dimension: description {
     type: string
     sql: ${TABLE}."DESCRIPTION" ;;
-  }
-
-  dimension: kind {
-    type: string
-    sql: ${TABLE}."KIND" ;;
-  }
-
-  dimension: number {
-    type: number
-    sql: ${TABLE}."NUMBER" ;;
-  }
-
-  dimension: priority {
-    type: string
-    sql: ${TABLE}."PRIORITY" ;;
-  }
-
-  dimension: reporter {
-    type: string
-    sql: ${TABLE}."REPORTER" ;;
   }
 
   dimension: repository_id {
@@ -113,7 +87,26 @@ view: issue_core {
     drill_fields: [detail*]
   }
 
-  measure: issues {
+  dimension_group: to_update {
+    type: duration
+    intervals: [day]
+    sql_start: ${TABLE}."CREATED_ON" ;;
+    sql_end: ${TABLE}."UPDATED_ON" ;;
+    drill_fields: [detail*]
+  }
+
+  measure: days_to_merge {
+    type: sum
+    sql: (CASE
+            WHEN ${state} = 'MERGED'
+            THEN ${days_to_update}
+            ELSE NULL
+          END) ;;
+    value_format: "#,##0"
+    drill_fields: [detail*]
+  }
+
+  measure: pull_requests {
     type: count
     drill_fields: [detail*]
   }
@@ -122,12 +115,14 @@ view: issue_core {
   set: detail {
     fields: [
       organization.organization,
-      user.user,
       repository.repository,
-      issue_id,
+      users.user,
       created_date,
       updated_date,
-      issue_comment.issue_comments
+      pull_request_id,
+      title,
+      description,
+      pull_request_activity.pull_request_activities
     ]
   }
 }

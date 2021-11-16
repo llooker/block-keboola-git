@@ -43,37 +43,5 @@ connection: "@{CONNECTION}"
 
 label: "Block Keboola Git Essentials"
 
-include: "*.view"
-include: "*.explore.lkml"
-include: "*.dashboard.lookml"
-include: "//@{CONFIG_PROJECT_NAME}/*.view.lkml"
-include: "//@{CONFIG_PROJECT_NAME}/*.model.lkml"
-include: "//@{CONFIG_PROJECT_NAME}/*.dashboard.lkml"
-
-explore: event {
-  extends: [event_config]
-}
-
-explore: issue {
-  extends: [issue_config]
-}
-
-explore: organization {
-  extends: [organization_config]
-}
-
-explore: pull_request {
-  extends: [pull_request_config]
-}
-
-explore: repository {
-  extends: [repository_config]
-}
-
-explore: repository_commit {
-  extends: [repository_commit_config]
-}
-
-explore: user {
-  extends: [user_config]
-}
+include: "/explores/*.explore.lkml"
+include: "/dashboards/*.dashboard.lookml"

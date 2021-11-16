@@ -1,18 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/pull_request.view"
+view: issue {
+  sql_table_name: @{SCHEMA_NAME}.ISSUE ;;
+  drill_fields: [issue_id, title]
 
-view: pull_request {
-  extends: [pull_request_config]
-}
-
-view: pull_request_core {
-  sql_table_name: @{SCHEMA_NAME}.PULL_REQUEST ;;
-  drill_fields: [pull_request_id, title]
-
-  dimension: pull_request_id {
-  label: "Pull Request ID"
+  dimension: issue_id {
+    label: "Issue ID"
     primary_key: yes
     type: string
-    sql: ${TABLE}."PULL_REQUEST_ID" ;;
+    sql: ${TABLE}."ISSUE_ID" ;;
     html: <a href={{url}} target="_blank"><font color="blue">{{ value }}</font></a> ;;
   }
 
@@ -33,6 +27,26 @@ view: pull_request_core {
   dimension: description {
     type: string
     sql: ${TABLE}."DESCRIPTION" ;;
+  }
+
+  dimension: kind {
+    type: string
+    sql: ${TABLE}."KIND" ;;
+  }
+
+  dimension: number {
+    type: number
+    sql: ${TABLE}."NUMBER" ;;
+  }
+
+  dimension: priority {
+    type: string
+    sql: ${TABLE}."PRIORITY" ;;
+  }
+
+  dimension: reporter {
+    type: string
+    sql: ${TABLE}."REPORTER" ;;
   }
 
   dimension: repository_id {
@@ -93,26 +107,7 @@ view: pull_request_core {
     drill_fields: [detail*]
   }
 
-  dimension_group: to_update {
-    type: duration
-    intervals: [day]
-    sql_start: ${TABLE}."CREATED_ON" ;;
-    sql_end: ${TABLE}."UPDATED_ON" ;;
-    drill_fields: [detail*]
-  }
-
-  measure: days_to_merge {
-    type: sum
-    sql: (CASE
-            WHEN ${state} = 'MERGED'
-            THEN ${days_to_update}
-            ELSE NULL
-          END) ;;
-    value_format: "#,##0"
-    drill_fields: [detail*]
-  }
-
-  measure: pull_requests {
+  measure: issues {
     type: count
     drill_fields: [detail*]
   }
@@ -121,14 +116,12 @@ view: pull_request_core {
   set: detail {
     fields: [
       organization.organization,
+      user.user,
       repository.repository,
-      users.user,
+      issue_id,
       created_date,
       updated_date,
-      pull_request_id,
-      title,
-      description,
-      pull_request_activity.pull_request_activities
+      issue_comment.issue_comments
     ]
   }
 }

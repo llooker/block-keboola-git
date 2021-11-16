@@ -29,7 +29,7 @@
     height: 2
   - title: Users Overall Activity
     name: Users Overall Activity
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: event
     type: looker_column
     fields: [user.user, event.events, event.event]
@@ -92,7 +92,7 @@
     height: 7
   - title: Users Pull Requests
     name: Users Pull Requests
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: pull_request
     type: looker_column
     fields: [user.user, pull_request.pull_requests, pull_request.state]
@@ -146,7 +146,7 @@
     height: 7
   - title: Repositories Users Are Developing In (Commits/Pulls)
     name: Repositories Users Are Developing In (Commits/Pulls)
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: event
     type: looker_column
     fields: [user.user, repository.repositories, repository.language]
@@ -214,7 +214,7 @@
     height: 7
   - title: Users Commits
     name: Users Commits
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: repository_commit
     type: looker_column
     fields: [repository_commit.commits, user.user, repository.language]
@@ -269,7 +269,7 @@
     height: 7
   - title: Users Assigned Issues
     name: Users Assigned Issues
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: issue
     type: looker_column
     fields: [user.user, issue.kind, issue.issues]
@@ -325,7 +325,7 @@
     height: 7
   - title: Users Activities Above Pull Requests (Reviews)
     name: Users Activities Above Pull Requests (Reviews)
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: pull_request
     type: looker_column
     fields: [pull_request_activity.pull_request_activities, pull_request_activity.user,
@@ -390,7 +390,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: organization
     listens_to_filters: []
     field: organization.organization
@@ -400,7 +400,7 @@
     default_value: "-External User"
     allow_multiple_values: true
     required: false
-    model: block_keboola_git
+    model: block_keboola_git_v2
     explore: user
     listens_to_filters: [Organization]
     field: user.user
